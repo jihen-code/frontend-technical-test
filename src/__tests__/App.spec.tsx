@@ -1,11 +1,11 @@
-import { render, screen } from "@testing-library/react"
-import App from "../pages"
+import { render, screen, waitFor } from "@testing-library/react";
+import Conversations from "@/pages/conversations";
 
-describe("App", () => {
-  it("should render correctly App", () => {
-    render(<App />)
-    expect(
-      screen.getByText(/Welcome/)
-    ).toBeInTheDocument()
-  })
-})
+describe("Conversations page", () => {
+    it("should render conversations page correctly", async () => {
+        render(<Conversations />);
+        await waitFor(() => {
+            expect(screen.getByText(/Messagerie/)).toBeInTheDocument();
+        });
+    });
+});

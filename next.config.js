@@ -10,7 +10,16 @@ const nextConfig = {
   i18n: {
     locales: ['fr'],
     defaultLocale: 'fr',
-  }
+  },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/conversations",
+        permanent: false,
+      },
+    ];
+  },
 }
 
 module.exports = nextConfig
