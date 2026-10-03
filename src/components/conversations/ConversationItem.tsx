@@ -3,7 +3,7 @@ import styles from "@/styles/Conversations.module.css";
 import { getConversationParticipant } from "@/utils/getConversationParticipant";
 import { formatDateTime } from "@/utils/formatDateTime";
 
-export function ConversationsItem({
+export function ConversationItem({
     conversation,
     currentUserId,
 }: {

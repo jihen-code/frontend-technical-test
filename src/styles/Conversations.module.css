@@ -1,30 +1,5 @@
-.container {
-  min-height: 100vh;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  background-color: #f0f2f5;
-}
-
-.main {
-  margin: 0 auto;
-  width: 100%;
-  max-width: 1048px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  border-radius: 16px;
-  border: 1px solid #eee;
-}
-
 .header {
   padding: 0 16px;
-}
-
-.header img {
-  margin: 60px auto 30px;
-  display: block;
 }
 
 .title {
@@ -90,7 +65,6 @@
   opacity: 0.5;
 }
 
-.content,
 .conversationContent {
   padding: 80px 16px;
   display: flex;
@@ -99,14 +73,12 @@
   justify-content: center;
 }
 
-.content p,
 .conversationContent p {
   font-weight: bold;
   font-size: 15px;
   margin-bottom: 8px;
 }
 
-.content span,
 .conversationContent span {
   font-weight: 500;
   opacity: 0.5;
@@ -122,26 +94,11 @@
   background-color: #eee;
 }
 
-.footer {
-  width: 100%;
-  margin-top: 16px;
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 @media (max-width: 1024px) {
-  .header img {
-    margin: 50px auto 30px;
-    max-width: 250px;
-    width: 100%;
-    height: auto;
-  }
-
   .subTitle {
     font-size: 16px;
   }
+  
   .grid {
     grid-template-columns: 250px 1fr;
   }
@@ -166,12 +123,10 @@
     padding: 50px 12px;
   }
 
-  .content p,
   .conversationContent p {
     font-size: 14px;
   }
 
-  .content span,
   .conversationContent span {
     font-size: 12px;
     max-width: 70%;
