@@ -16,11 +16,12 @@ export function ConversationsItem({
         <li className={styles.conversationItem}>
             <span className={styles.avatar}>{participant.name.charAt(0)}</span>
 
-            <span className={styles.conversationContent}>
+            <span className={styles.conversationParticipant}>
                 {participant.name}
-                <span className={styles.dateTime}>
-                    {formatDateTime(conversation.lastMessageTimestamp)}
-                </span>
+            </span>
+
+            <span className={styles.dateTime}>
+                {formatDateTime(conversation.lastMessageTimestamp)}
             </span>
         </li>
     );

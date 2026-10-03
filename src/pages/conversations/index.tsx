@@ -69,7 +69,7 @@ export default function Conversations(): ReactElement {
                             </ul>
                         </div>
 
-                        <div className={styles.content}>
+                        <div className={styles.conversationContent}>
                             <p>Sélectionnez une conversation</p>
                             <span>
                                 Choisissez une conversation dans la liste pour
