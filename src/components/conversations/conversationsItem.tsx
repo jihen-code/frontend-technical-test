@@ -1,5 +1,7 @@
 import { Conversation } from "@/types/conversation";
 import styles from "@/styles/Conversations.module.css";
+import { getConversationParticipant } from "@/utils/getConversationParticipant";
+import { formatDateTime } from "@/utils/formatDateTime";
 
 export function ConversationsItem({
     conversation,
@@ -8,19 +10,16 @@ export function ConversationsItem({
     conversation: Conversation;
     currentUserId: number;
 }) {
-    const participantName =
-        conversation.senderId !== currentUserId
-            ? conversation.senderNickname
-            : conversation.recipientNickname;
+    const participant = getConversationParticipant(currentUserId, conversation);
 
     return (
         <li className={styles.conversationItem}>
-            <span className={styles.avatar}>{participantName.charAt(0)}</span>
+            <span className={styles.avatar}>{participant.name.charAt(0)}</span>
 
             <span className={styles.conversationContent}>
-                {participantName}
+                {participant.name}
                 <span className={styles.dateTime}>
-                    {conversation.lastMessageTimestamp}
+                    {formatDateTime(conversation.lastMessageTimestamp)}
                 </span>
             </span>
         </li>
