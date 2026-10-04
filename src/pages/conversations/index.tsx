@@ -6,17 +6,14 @@ import { ConversationItem } from "@/components/conversations/ConversationItem";
 import { Conversation } from "@/types/conversation";
 import { ConversationsSkeleton } from "@/components/conversations/ConversationsSkeleton";
 import ErrorMessage from "@/components/ErrorMessage";
+import Header from "@/components/Header";
 
 export default function Conversations(): ReactElement {
-    const year = new Date().getFullYear();
     const { conversations, isLoading, error } = useConversations(loggedUserId);
 
     return (
         <>
-            <div className={styles.header}>
-                <h1 className={styles.title}>Messagerie</h1>
-                <h2 className={styles.subTitle}>Conversations</h2>
-            </div>
+            <Header title="Messagerie" subtitle="Conversations" />
 
             {isLoading && <ConversationsSkeleton />}
 

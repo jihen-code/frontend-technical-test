@@ -7,10 +7,13 @@ import { MessageBubble } from "@/components/messages/MessageBubble";
 import { loggedUserId } from "../_app";
 import { MessagessSkeleton } from "@/components/messages/MessagesSkeleton";
 import ErrorMessage from "@/components/ErrorMessage";
+import Link from "next/link";
+import { useConversations } from "@/hooks/useConversations";
+import { getConversationParticipant } from "@/utils/getConversationParticipant";
+import Header from "@/components/Header";
 
 export default function ConversationPage(): ReactElement {
     const router = useRouter();
-    const year = new Date().getFullYear();
 
     const conversationId = useMemo(() => {
         if (router.query.conversationId) {
@@ -22,13 +25,22 @@ export default function ConversationPage(): ReactElement {
     }, [router.query.conversationId]);
 
     const { messages, isLoading, error } = useMessages(conversationId);
+    const { conversations } = useConversations(loggedUserId);
+    const conversation = conversations.find(
+        (item) => item.id === conversationId,
+    );
+    const participant = conversation
+        ? getConversationParticipant(loggedUserId, conversation)
+        : null;
 
     return (
         <>
-            <div className={styles.header}>
-                <h1 className={styles.title}>Messagerie</h1>
-                <h2 className={styles.subTitle}>Conversation</h2>
-            </div>
+            <Header
+                title="Conversation"
+                subtitle={participant ? participant.name : "Chargement..."}
+                participant={participant?.name}
+                hasBackButton
+            />
 
             {isLoading && <MessagessSkeleton />}
 

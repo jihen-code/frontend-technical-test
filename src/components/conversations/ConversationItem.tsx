@@ -2,6 +2,7 @@ import { Conversation } from "@/types/conversation";
 import styles from "@/styles/Conversations.module.css";
 import { getConversationParticipant } from "@/utils/getConversationParticipant";
 import { formatDateTime } from "@/utils/formatDateTime";
+import Link from "next/link";
 
 export function ConversationItem({
     conversation,
@@ -13,16 +14,21 @@ export function ConversationItem({
     const participant = getConversationParticipant(currentUserId, conversation);
 
     return (
-        <li className={styles.conversationItem}>
-            <span className={styles.avatar}>{participant.name.charAt(0)}</span>
+        <li>
+            <Link
+                href={`/conversations/${conversation.id}`}
+                className={styles.conversationItem}
+            >
+                <span className="avatar">{participant.name.charAt(0)}</span>
 
-            <span className={styles.conversationParticipant}>
-                {participant.name}
-            </span>
+                <span className={styles.conversationParticipant}>
+                    {participant.name}
+                </span>
 
-            <span className={styles.dateTime}>
-                {formatDateTime(conversation.lastMessageTimestamp)}
-            </span>
+                <span className={styles.dateTime}>
+                    {formatDateTime(conversation.lastMessageTimestamp)}
+                </span>
+            </Link>
         </li>
     );
 }
