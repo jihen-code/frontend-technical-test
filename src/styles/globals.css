@@ -17,7 +17,7 @@ a {
 }
 
 .container {
-  min-height: 100vh;
+  height: 100vh;
   padding: 16px;
   display: flex;
   flex-direction: column;
@@ -34,6 +34,7 @@ a {
   background-color: #fff;
   border-radius: 16px;
   border: 1px solid #eee;
+  overflow: auto;
 }
 
 .logo {

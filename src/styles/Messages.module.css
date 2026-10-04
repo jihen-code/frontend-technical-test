@@ -1,3 +1,8 @@
+.messagesContainer {
+    flex: 1;
+    overflow: scroll;
+}
+
 .messagesList {
     padding: 0;
     list-style: none;
@@ -52,4 +57,48 @@
 
 .messageSkeleton.participant {
     border-end-start-radius: 0;
+}
+
+.form {
+    display: flex;
+    width: 100%;
+    padding: 16px;
+    gap: 8px;
+}
+
+.form textarea {
+    flex: 1;
+    width: 100%;
+    border-color: #eee;
+    border-radius: 8px;
+    padding: 12px 16px;
+    line-height: 1.4;
+    height: 50px;
+    outline: none;
+}
+
+.form button {
+    background-color: #ec5a13;
+    color: #fff;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    height: 50px;
+    width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.form button:hover {
+    opacity: 0.9;
+}
+
+.form button:disabled {
+    background-color: #eee;
+    color: #000;
+    cursor: not-allowed;
 }
