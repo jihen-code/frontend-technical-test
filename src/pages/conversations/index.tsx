@@ -20,7 +20,7 @@ export default function Conversations(): ReactElement {
             {error && (
                 <ErrorMessage
                     error="Impossible de charger vos conversations"
-                    description="Le service est temporairement indisponible."
+                    description={error.message}
                 />
             )}
 

@@ -11,6 +11,9 @@ export function useMessages(conversationId: number | null) {
         async (id: number | null) => {
             if (!id) {
                 setIsLoading(false);
+                setError(
+                    new Error("La conversation spécifiée est introuvable."),
+                );
                 return;
             }
 

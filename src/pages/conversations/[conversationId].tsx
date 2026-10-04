@@ -1,6 +1,6 @@
 import { useMessages } from "@/hooks/useMessages";
 import { useRouter } from "next/router";
-import { FormEvent, ReactElement, useEffect, useMemo, useState } from "react";
+import { FormEvent, ReactElement, useMemo, useState } from "react";
 import styles from "@/styles/Messages.module.css";
 import { Message } from "@/types/message";
 import { MessageBubble } from "@/components/messages/MessageBubble";
@@ -42,7 +42,7 @@ export default function ConversationPage(): ReactElement {
         if (value.length > 0 && conversationId) {
             await addMessage({
                 conversationId,
-                body: value,
+                body: value.trim(),
                 timestamp: Math.floor(Date.now() / 1000),
                 authorId: loggedUserId,
             });
@@ -57,7 +57,13 @@ export default function ConversationPage(): ReactElement {
         <>
             <Header
                 title="Conversation"
-                subtitle={participant ? participant.name : "Chargement..."}
+                subtitle={
+                    error
+                        ? ""
+                        : participant
+                          ? participant.name
+                          : "Chargement..."
+                }
                 participant={participant?.name}
                 hasBackButton
             />
@@ -67,7 +73,7 @@ export default function ConversationPage(): ReactElement {
             {error && (
                 <ErrorMessage
                     error="Impossible de charger vos messages"
-                    description="Le service est temporairement indisponible."
+                    description={error.message}
                 />
             )}
 
@@ -95,7 +101,10 @@ export default function ConversationPage(): ReactElement {
             <form className={styles.form} onSubmit={onMessageSubmit}>
                 <textarea
                     value={value}
-                    onChange={(e) => setValue(e.target.value)}
+                    placeholder="Message..."
+                    onChange={(e) => {
+                        setValue(e.target.value.slice(0, 1000));
+                    }}
                 />
                 <button type="submit" disabled={isSendingMessage}>
                     {isSendingMessage ? "Envoi..." : "Envoyer"}

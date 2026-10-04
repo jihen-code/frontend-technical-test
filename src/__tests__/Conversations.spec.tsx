@@ -6,6 +6,7 @@ describe("Conversations page", () => {
         render(<Conversations />);
         await waitFor(() => {
             expect(screen.getByText(/Messagerie/)).toBeInTheDocument();
+            expect(screen.getByText(/Conversations/)).toBeInTheDocument();
         });
     });
 });
