@@ -1,71 +1,128 @@
 # Context :
 
-At leboncoin, our users can share messages about a transaction, or ask for informations about any products.
+This project was developed as part of the Leboncoin Front-End technical test.
 
-Your job is to create the interface to consult those messages.
-The interface needs to work on both desktop & mobile devices.
+The provided starter project already included the Next.js setup, Pages Router structure, server implementation, and API documentation.
 
-In addition to your code, a README explaining your thought process and your choices would be appreciated.
+My work focused on implementing the messaging interface on top of this existing structure.
 
-# Exercise :
+# Features :
 
-- Display a list of all the conversations
-- Allow the user to select a conversation
-  - Inside the conversation, there is a list of all the messages between these two users.
-  - As a user, you can type and send new messages in this conversation
+- Display the list of conversations
+- Select and view a conversation
+- Display messages between users
+- Send new messages
+- Responsive design for desktop and mobile
+- Loading and error states
+- Message validation and character limit
+- API error handling
 
-**As your application can be used by millions of users, make sure to provide some robust safety guards.**
+# Implementation :
 
-### Sketches :
+### Conversations
 
-Obvisouly, it is up to you to make something nice and pretty, you are free to design it the way you like. The sketches are here to give you an idea on how it should look.
+I created a dedicated conversation service and `useConversations` hook to handle conversation-related API operations.
 
-<details>
-  <summary>Click to see the sketches</summary>
-  
-Mobile list :
+The service is responsible for communicating with the provided API, while the hook handles the data and state needed by the UI.
 
-![](./sketches/list-mobile.jpg)
+This keeps API-related logic separated from the presentation layer and makes the code easier to maintain.
 
-Desktop list :
+### Messages
 
-![](./sketches/list-desktop.jpg)
+I followed the same approach for messages by creating message service and `useMessages` and `useAddMessage` hooks to handle message-related API operations and state.
 
-Mobile conversation :
+### UI
 
-![](./sketches/conv-mobile.jpg)
+I implemented the required pages and designed the interface based on the provided sketches, while adding my own visual and UX choices.
 
-Desktop conversation :
+The goal was to keep the interface simple and intuitive while providing clear feedback for loading, empty, and error states.
 
-![](./sketches/conv-desktop.jpg)
+## Safety & Error Handling
 
-</details>
+The application includes several safeguards:
 
-### API :
+### Message validation
 
-You can find the API swagger file in `docs/api-swagger.yaml`.
+- Empty messages cannot be sent.
+- A maximum character limit is applied to messages.
 
-For a better readibility, you can view it on [https://leboncoin.tech/frontend-technical-test/](https://leboncoin.tech/frontend-technical-test/).
+### API errors
 
----
+API errors are handled in the messaging hooks and surfaced to the UI so that users receive feedback instead of being left with an unexpected or broken state.
 
-## Bonus 1 :
+### Loading states
 
-We provide some conversation samples, but can you improve the app so the user can now create new conversations ?
+Loading states are handled while conversations and messages are being fetched and while messages are being sent.
 
-## Bonus 2 :
+## Testing
 
-Our infrastructure is a bit shaky.. Sometimes the servers are crashing. “It’s not you, it’s me”, but maybe you can display something nice to warn the user and handle it gracefully.
+I added tests for selected utility functions and part of the application logic.
 
-## Do you want to make the app even better ?
+Due to the available time for the exercise, the test coverage is not exhaustive. With additional time, I would extend the tests to cover more hooks, components, API scenarios, and end-to-end user flows.
 
-Feel free to make as many improvements as you like.
-We love creativity and technical challenges.
+## Responsive Design
 
-If you are out of ideas, here are some thoughts :
+The application is designed to work on both desktop and mobile devices.
 
-- As we want to reach our users anywhere, we need to make sure the app is performing well. What can you do to make it really fast ?
+The layout adapts depending on the screen size to provide an appropriate conversation browsing and messaging experience.
 
-- Our goal is to support everybody in the country, including people with disabilities. As a good citizen and a good developer, can you make sure the app is accessible for everyone ?
+## API
 
-- We all love to relax after a hard day’s work. It would be a shame if we didn’t feel confident enough about the upcoming automatic deployment. Are you sure everything has been tested thoroughly ?
+The application uses the local APIs provided by the starter project.
+
+The API specification can be found in:
+
+`docs/api-swagger.yaml`
+
+API communication is handled through dedicated services rather than directly inside the UI components.
+
+## Project Structure
+
+The implementation follows the structure provided by the starter project.
+
+The main additions are:
+
+- Conversation and message services for API communication
+- `useConversations`, `useMessages` and `useAddMessage` hooks for data and state management
+- Conversations pages and UI components
+- Reusable utility functions for common application logic
+- CSS Modules for component styling
+
+## Improvements
+
+The following improvements would be possible with additional time:
+
+- Create new conversations
+- Add more comprehensive unit and integration tests
+- Add end-to-end tests
+- Add pagination for large lists
+- Add scroll down to the new message when sending messages
+- Further optimize API requests and rendering
+- Add a character counter when composing a new message.
+- Display a clear validation error message when the message exceeds the character limit.
+
+## Running the Project
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the server:
+
+```bash
+npm run start-server
+```
+
+Run the application:
+
+```bash
+npm run dev
+```
+
+Run tests:
+
+```bash
+npm run test
+```
